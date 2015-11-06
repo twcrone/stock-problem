@@ -23,7 +23,7 @@ class StockProblemSpec extends Specification {
     }
 
     @Unroll
-    def "for stock data #data, price at #time is a min value"() {
+    def "for stock data #data, price at #time is a min value is #expected"() {
 
         expect:
         isMin(data, t) == expected
@@ -34,6 +34,20 @@ class StockProblemSpec extends Specification {
         SIMPLE  |   0   ||  true
         SIMPLE  |   2   ||  false
         SIMPLE  |   4   ||  false
+    }
+
+    @Unroll
+    def "for stock data #data, price at #time is a max value is #expected"() {
+
+        expect:
+        isMax(data, t) == expected
+
+        where:
+
+        data    |   t   ||  expected
+        SIMPLE  |   0   ||  true
+        SIMPLE  |   2   ||  false
+        SIMPLE  |   4   ||  true
     }
 
     def solveFor(data) {
@@ -47,7 +61,18 @@ class StockProblemSpec extends Specification {
         else if(t + 1 >= data.size()) {
             false
         }
-        else if(data[t] < data[t -1] && data[t] < data[t-1]) {
+        else if(data[t] < data[t -1] && data[t] < data[t + 1]) {
+            true
+        }
+        else { false }
+    }
+
+    def isMax(data, t) {
+        def size = data.size()
+        if(t + 1 >= size || t -1 < 0) {
+            true
+        }
+        else if(data[t] > data[t -1] && data[t] > data[t + 1]) {
             true
         }
         else { false }
