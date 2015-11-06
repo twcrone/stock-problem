@@ -26,12 +26,14 @@ class StockProblemSpec extends Specification {
     def "for stock data #data, price at #time is a min value"() {
 
         expect:
-        isMin(data, t)
+        isMin(data, t) == expected
 
         where:
 
-        data    |   t
-        SIMPLE  |   0
+        data    |   t   ||  expected
+        SIMPLE  |   0   ||  true
+        SIMPLE  |   2   ||  false
+        SIMPLE  |   4   ||  false
     }
 
     def solveFor(data) {
