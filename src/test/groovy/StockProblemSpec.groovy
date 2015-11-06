@@ -2,16 +2,28 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 class StockProblemSpec extends Specification {
-  
-  @Unroll
-  def "length of Spock's and his friends' names"() {
-    expect:
-    name.size() == length
 
-    where:
-    name     | length
-    "Spock"  | 5
-    "Kirk"   | 4
-    "Scotty" | 6
-  }
-}  
+    static SIMPLE = [1.00, 2.00]
+
+    @Unroll
+    def "for stock data #data, you should buy at #buy, sell at #sell and your gains are #gains"() {
+
+        when:
+        def (actualBuy, actualSell, actualGains) = solveFor(data)
+
+        then:
+        actualBuy == buy
+        actualSell == sell
+        actualGains == gains
+
+        where:
+        data   || buy   | sell  | gains
+        SIMPLE || 1.00  | 2.00  | 1.00
+    }
+
+    def solveFor(data) {
+        [1.0, 2.0, 1.0]
+    }
+}
+
+
