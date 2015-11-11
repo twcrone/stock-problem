@@ -5,6 +5,9 @@ class StockProblemSpec extends Specification {
 
     static SIMPLE = [1.00, 2.00, 3.00, 4.00, 5.00]
     static NO_GAINS = [5.00, 4.00, 3.00, 2.00, 1.00]
+    static CASE1 = [2.00, 1.00, 2.00, 3.00, 4.00, 3.00]
+    static CASE2 = [3.00, 2.00, 1.00, 2.00, 1.00, 2.00]
+    static CASE3 = [4.00, 8.00, 3.00, 2.00, 5.00, 7.00, 3.0, 1.0]
 
     @Unroll
     def "for stock data #data, you should buy at #buy, sell at #sell and your gains are #gains"() {
@@ -22,6 +25,9 @@ class StockProblemSpec extends Specification {
         data        || buy   | sell  | gains
         SIMPLE      || 1.00  | 5.00  | 4.00
         NO_GAINS    || 0.00  | 0.00  | 0.00
+        CASE1       || 1.00  | 4.00  | 3.00
+        CASE2       || 1.00  | 2.00  | 1.00
+        CASE3       || 2.00  | 7.00  | 5.00
     }
 
     def solveFor(data) {
