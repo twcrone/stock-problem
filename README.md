@@ -6,3 +6,5 @@ in ADVANCE, how would you optimize your gains on the following day if you could 
 make one buy and one sell.
 
 To run the specifications for the solution, run `./gradlew test`.
+
+Test report can be viewed at `./build/reports/tests/index.html`
